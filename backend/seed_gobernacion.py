@@ -60,24 +60,62 @@ for txt, tipo, actor, fecha, peso in narrativas:
                      actor_politico=actor, fecha_deteccion=fecha, peso=peso))
 
 # ── Emociones ─────────────────────────────────────────────────────────────
+# Fuentes: escucha social y bigdata (sin encuestas ni focus groups)
 emociones = [
-    ("ira",           8.6, "Twitter/X",   date(2026, 1, 15)),
-    ("ira",           8.1, "Facebook",    date(2026, 1, 28)),
-    ("ira",           8.9, "Twitter/X",   date(2026, 2, 10)),
-    ("miedo",         7.2, "Encuesta",    date(2026, 1, 20)),
-    ("miedo",         6.8, "WhatsApp",    date(2026, 2, 5)),
-    ("frustracion",   8.7, "Encuesta",    date(2026, 1, 25)),
-    ("frustracion",   9.1, "Focus Group", date(2026, 2, 12)),
-    ("esperanza",     4.8, "Encuesta",    date(2026, 2, 1)),
-    ("esperanza",     5.5, "Eventos",     date(2026, 2, 15)),
-    ("desconfianza",  7.8, "Encuesta",    date(2026, 1, 18)),
-    ("desconfianza",  8.2, "Twitter/X",   date(2026, 2, 8)),
-    ("orgullo",       6.5, "Focus Group", date(2026, 2, 3)),
-    ("orgullo",       7.0, "Encuesta",    date(2026, 2, 18)),
+    # IRA — semana 1 (10–16 ene)
+    ("ira",          8.6, "Twitter/X",         date(2026, 1, 11), "Pico de indignación por anuncio de alza de tarifas de servicios departamentales"),
+    ("ira",          7.9, "Facebook",           date(2026, 1, 12), "Comentarios virales contra gestión de obras inconclusas en Santa Cruz"),
+    ("ira",          8.3, "TikTok",             date(2026, 1, 14), "Videos de baches y calles inundadas con alta difusión"),
+    # IRA — semana 2 (17–23 ene)
+    ("ira",          8.1, "Telegram",           date(2026, 1, 18), "Grupos políticos difunden denuncias sobre contratos irregulares"),
+    ("ira",          8.7, "Twitter/X",          date(2026, 1, 22), "Trending #GobernacionResponde por corte de agua en zonas rurales"),
+    # IRA — semana 3-4 (24 ene – 10 feb)
+    ("ira",          7.5, "Facebook",           date(2026, 1, 29), "Compartidos masivos de notas sobre licitación cuestionada"),
+    ("ira",          8.9, "Twitter/X",          date(2026, 2, 8),  "Reacción a declaraciones del gobernador sobre el agro"),
+    ("ira",          9.1, "Instagram",          date(2026, 2, 11), "Reels de protestas en carreteras departamentales"),
+
+    # MIEDO — escucha social
+    ("miedo",        7.2, "Twitter/X",          date(2026, 1, 13), "Temor al centralismo tras declaraciones del gobierno nacional"),
+    ("miedo",        6.8, "WhatsApp viral",     date(2026, 1, 21), "Cadenas sobre posible intervención federal a tierras productivas"),
+    ("miedo",        7.5, "Facebook",           date(2026, 1, 27), "Comentarios sobre crisis de diésel y su impacto en cosecha"),
+    ("miedo",        7.0, "Telegram",           date(2026, 2, 3),  "Difusión de audios sobre deuda departamental no comunicada"),
+    ("miedo",        6.5, "TikTok",             date(2026, 2, 9),  "Contenido viral sobre pérdida de autonomía departamental"),
+    ("miedo",        7.8, "Twitter/X",          date(2026, 2, 14), "Reacción a proyecto de ley que afecta gestión de recursos hídricos"),
+
+    # FRUSTRACION — bigdata social
+    ("frustracion",  8.7, "Twitter/X",          date(2026, 1, 15), "Saturación de quejas sobre falta de mantenimiento vial"),
+    ("frustracion",  8.4, "Facebook",           date(2026, 1, 23), "Grupos de vecinos comparten fotos de infraestructura deteriorada"),
+    ("frustracion",  9.1, "Instagram",          date(2026, 2, 1),  "Historias y reels sobre promesas incumplidas de candidatos"),
+    ("frustracion",  8.8, "Twitter/X",          date(2026, 2, 7),  "Hashtag #NosCansamosDeEsperar con miles de impresiones"),
+    ("frustracion",  9.3, "TikTok",             date(2026, 2, 13), "Videos virales comparando gestión anterior vs actual"),
+    ("frustracion",  8.6, "YouTube",            date(2026, 2, 19), "Comentarios en notas de medios locales sobre obras sin terminar"),
+
+    # ESPERANZA — señales débiles
+    ("esperanza",    4.8, "Facebook",           date(2026, 1, 17), "Reacciones positivas a propuesta de candidato independiente"),
+    ("esperanza",    5.2, "Twitter/X",          date(2026, 1, 26), "Respaldo a agenda de transparencia presentada en foro"),
+    ("esperanza",    5.5, "Instagram",          date(2026, 2, 4),  "Cobertura positiva de acto comunitario en municipios del interior"),
+    ("esperanza",    6.1, "YouTube",            date(2026, 2, 10), "Video de propuesta productiva con amplia recepción orgánica"),
+    ("esperanza",    5.8, "Facebook",           date(2026, 2, 16), "Movilización de jóvenes cruceños en torno a plataforma cívica"),
+    ("esperanza",    6.3, "TikTok",             date(2026, 2, 20), "Contenido positivo sobre potencial agropecuario del departamento"),
+
+    # DESCONFIANZA — señal dominante
+    ("desconfianza", 7.8, "Twitter/X",          date(2026, 1, 16), "Escepticismo ante cifras oficiales de inversión departamental"),
+    ("desconfianza", 8.2, "Facebook",           date(2026, 1, 24), "Comentarios desconfiados ante actos de campaña anticipada"),
+    ("desconfianza", 8.5, "Telegram",           date(2026, 1, 30), "Difusión de análisis ciudadano que cuestiona rendición de cuentas"),
+    ("desconfianza", 8.0, "Twitter/X",          date(2026, 2, 6),  "Reacción viral a nota de investigación periodística"),
+    ("desconfianza", 8.7, "Instagram",          date(2026, 2, 12), "Infografías virales sobre inconsistencias en el presupuesto"),
+    ("desconfianza", 9.0, "YouTube",            date(2026, 2, 18), "Comentarios a entrevista donde candidato evita responder"),
+
+    # ORGULLO — identidad camba
+    ("orgullo",      6.5, "Instagram",          date(2026, 1, 20), "Contenido sobre identidad regional camba con alta interacción"),
+    ("orgullo",      7.2, "TikTok",             date(2026, 1, 31), "Videos de fiestas y tradiciones cruceñas con millones de vistas"),
+    ("orgullo",      6.8, "Facebook",           date(2026, 2, 5),  "Comunidades de cruceños en exterior compartiendo contenido regional"),
+    ("orgullo",      7.0, "Twitter/X",          date(2026, 2, 15), "Debate sobre autonomía departamental activa sentimiento identitario"),
+    ("orgullo",      7.5, "YouTube",            date(2026, 2, 21), "Documental sobre productores agropecuarios con alta difusión orgánica"),
 ]
-for tipo, intens, fuente, fecha in emociones:
+for tipo, intens, fuente, fecha, notas in emociones:
     db.add(Emotion(project_id=pid, tipo=tipo, intensidad=intens,
-                   fuente=fuente, fecha=fecha))
+                   fuente=fuente, fecha=fecha, notas=notas))
 
 # ── Arquetipos ────────────────────────────────────────────────────────────
 arquetipos = [
@@ -177,7 +215,7 @@ lenguaje_data = [
     ("esperar y ver",       "frase",    74, "indecision", "medio", "Actitud pasiva ante el proceso electoral",                               date(2026, 2, 3)),
     ("no me convence ninguno","frase",  91, "indecision", "alto",  "Rechazo a todos los candidatos por parte del votante blando",            date(2026, 2, 7)),
     ("quizás vote nulo",    "frase",    68, "indecision", "medio", "Amenaza de voto nulo como señal de descontento",                         date(2026, 2, 10)),
-    ("lo pienso más",       "frase",    55, "indecision", "bajo",  "Respuesta de indecisión en encuestas y focus groups",                    date(2026, 2, 13)),
+    ("lo pienso más",       "frase",    55, "indecision", "bajo",  "Expresión de indecisión detectada en escucha social y análisis digital",                    date(2026, 2, 13)),
     ("no hay candidato bueno","frase",  83, "indecision", "alto",  "Percepción de ausencia de opciones positivas",                           date(2026, 2, 16)),
     ("el que menos roba",   "meme",     77, "indecision", "medio", "Humor negro que refleja la desconfianza generalizada",                   date(2026, 2, 18)),
     ("ni uno ni otro",      "frase",    62, "indecision", "medio", "Posición ambivalente ante polarización política departamental",          date(2026, 2, 20)),

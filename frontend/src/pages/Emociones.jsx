@@ -149,7 +149,7 @@ export default function Emociones() {
             <div className="form-row">
               <div className="form-group">
                 <label>Fuente</label>
-                <input value={form.fuente} onChange={e => setForm({ ...form, fuente: e.target.value })} placeholder="Ej: Twitter, Entrevista, Encuesta..." />
+                <input value={form.fuente} onChange={e => setForm({ ...form, fuente: e.target.value })} placeholder="Ej: Twitter/X, Facebook, Instagram, TikTok, Telegram..." />
               </div>
               <div className="form-group">
                 <label>Fecha</label>
