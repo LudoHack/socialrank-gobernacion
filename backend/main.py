@@ -19,6 +19,17 @@ app.add_middleware(
 @app.on_event("startup")
 def startup():
     create_tables()
+    # Auto-seed si la BD está vacía
+    try:
+        from database import SessionLocal
+        from models.project import Project
+        db = SessionLocal()
+        count = db.query(Project).count()
+        db.close()
+        if count == 0:
+            import seed_gobernacion
+    except Exception as e:
+        print(f"[seed] Error: {e}")
 
 # ── API routes ────────────────────────────────────────────────────────────
 app.include_router(projects.router,     prefix="/api/projects",     tags=["Proyectos"])
