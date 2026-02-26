@@ -5,7 +5,7 @@ import { useRole } from '../../context/RoleContext'
 import {
   LayoutDashboard, Target, BookOpen, Activity, Users, MessageSquare,
   Globe2, AlertTriangle, TrendingUp, Bot, Lightbulb, FolderOpen,
-  Map, ShieldCheck, LogOut, Lock, X, ChevronRight, Zap
+  Landmark, ShieldCheck, LogOut, Lock, X, ChevronRight, Zap
 } from 'lucide-react'
 import './Sidebar.css'
 
@@ -62,11 +62,11 @@ export default function Sidebar() {
         {/* Brand */}
         <div className="sidebar-brand">
           <div className="brand-logo">
-            <Map size={18} strokeWidth={2} />
+            <Landmark size={18} strokeWidth={2} />
           </div>
           <div className="brand-text">
             <h1>Social Rank</h1>
-            <p>Bolivia · Gobernación SCZ</p>
+            <p>Bolivia · Gobierno Nacional</p>
           </div>
         </div>
 

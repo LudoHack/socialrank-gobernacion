@@ -6,7 +6,7 @@ from fastapi.responses import FileResponse
 from database import create_tables
 from routes import projects, upload, dashboard, narratives, emotions, archetypes, language, communities, risks, ai, evolution, ivb
 
-app = FastAPI(title="Social Rank Bolivia — Gobernación API", version="1.0.0")
+app = FastAPI(title="Social Rank Bolivia — Gobierno Nacional API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -27,7 +27,7 @@ def startup():
         count = db.query(Project).count()
         db.close()
         if count == 0:
-            import seed_gobernacion
+            import seed_gobierno
     except Exception as e:
         print(f"[seed] Error: {e}")
 

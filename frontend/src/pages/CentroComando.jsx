@@ -559,11 +559,11 @@ export default function CentroComando() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {[
-              { nombre: 'Cruceños Organizados', plat: 'Facebook', tam: '38K', influencia: 9, color: '#3b82f6' },
-              { nombre: 'Jóvenes Cambas SCZ', plat: 'TikTok', tam: '24K', influencia: 8, color: '#06b6d4' },
-              { nombre: 'Redes de Ferias/Mercados', plat: 'Boca a boca', tam: '55K', influencia: 8, color: '#f5c518' },
-              { nombre: 'Mujeres del Interior', plat: 'Facebook/WA', tam: '15K', influencia: 7, color: '#a78bfa' },
-              { nombre: 'Cívicos y Periodistas', plat: 'Twitter/X', tam: '12K', influencia: 8, color: '#22c55e' },
+              { nombre: 'Bolivia en Crisis — Noticias', plat: 'Facebook', tam: '145K', influencia: 9, color: '#3b82f6' },
+              { nombre: 'Generación Z Bolivia', plat: 'TikTok', tam: '87K', influencia: 8, color: '#06b6d4' },
+              { nombre: 'Redes Sindicales y Bases', plat: 'WhatsApp', tam: '320K', influencia: 9, color: '#f5c518' },
+              { nombre: 'Periodistas e Intelectuales', plat: 'Twitter/X', tam: '28K', influencia: 9, color: '#a78bfa' },
+              { nombre: 'Medios Digitales Independientes', plat: 'YouTube', tam: '64K', influencia: 8, color: '#22c55e' },
             ].map((c, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <div style={{ width: 6, height: 28, borderRadius: 3, background: c.color, flexShrink: 0 }} />
