@@ -1,6 +1,9 @@
 # ── Stage 1: Build frontend ──────────────────────────────────────────────
 FROM node:20-slim AS frontend-builder
 
+# cache-bust: 20260226-v3
+ARG CACHEBUST=20260226
+
 WORKDIR /frontend
 COPY frontend/package*.json ./
 RUN npm install
