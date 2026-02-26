@@ -1,7 +1,7 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    database_url: str = "sqlite:///./etnografica_scz.db"
+    database_url: str = "sqlite:///./etnografica_gob.db"
     gemini_api_key: str = ""          # Gratis en: https://aistudio.google.com/apikey
     environment: str = "development"
 

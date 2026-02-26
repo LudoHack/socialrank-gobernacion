@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout/Layout'
+import CentroComando from './pages/CentroComando'
 import Dashboard from './pages/Dashboard'
 import Narrativas from './pages/Narrativas'
 import Emociones from './pages/Emociones'
@@ -17,7 +18,8 @@ export default function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/"               element={<Navigate to="/dashboard" replace />} />
+        <Route path="/"               element={<Navigate to="/centro" replace />} />
+        <Route path="/centro"         element={<CentroComando />} />
         <Route path="/dashboard"      element={<Dashboard />} />
         <Route path="/ivb"            element={<IVB />} />
         <Route path="/narrativas"     element={<Narrativas />} />

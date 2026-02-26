@@ -2,27 +2,33 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useProject } from '../../context/ProjectContext'
 import { useRole } from '../../context/RoleContext'
+import {
+  LayoutDashboard, Target, BookOpen, Activity, Users, MessageSquare,
+  Globe2, AlertTriangle, TrendingUp, Bot, Lightbulb, FolderOpen,
+  Map, ShieldCheck, LogOut, Lock, X, ChevronRight, Zap
+} from 'lucide-react'
 import './Sidebar.css'
 
 const NAV_CLIENTE = [
-  { to: '/dashboard',       icon: '📊', label: 'Dashboard' },
-  { to: '/ivb',             icon: '🎯', label: 'Voto Blando (IVB)' },
-  { divider: true },
-  { to: '/narrativas',      icon: '📖', label: 'Narrativas' },
-  { to: '/emociones',       icon: '🎭', label: 'Emociones' },
-  { to: '/arquetipos',      icon: '👤', label: 'Arquetipos' },
-  { to: '/lenguaje',        icon: '💬', label: 'Lenguaje' },
-  { to: '/comunidades',     icon: '🌐', label: 'Comunidades' },
-  { to: '/riesgos',         icon: '⚠️',  label: 'Riesgos' },
-  { to: '/evolucion',       icon: '📈', label: 'Evolución' },
-  { divider: true },
-  { to: '/simulacion',      icon: '🤖', label: 'Simulación IA' },
-  { to: '/recomendaciones', icon: '💡', label: 'Recomendaciones IA' },
+  { to: '/centro',          icon: Zap,             label: 'Centro de Comando',  highlight: true },
+  { to: '/dashboard',       icon: LayoutDashboard,  label: 'Dashboard' },
+  { to: '/ivb',             icon: Target,           label: 'Voto Blando (IVB)' },
+  { divider: true, label: 'ANÁLISIS' },
+  { to: '/narrativas',      icon: BookOpen,         label: 'Narrativas' },
+  { to: '/emociones',       icon: Activity,         label: 'Emociones' },
+  { to: '/arquetipos',      icon: Users,            label: 'Arquetipos' },
+  { to: '/lenguaje',        icon: MessageSquare,    label: 'Lenguaje' },
+  { to: '/comunidades',     icon: Globe2,           label: 'Comunidades' },
+  { to: '/riesgos',         icon: AlertTriangle,    label: 'Riesgos' },
+  { to: '/evolucion',       icon: TrendingUp,       label: 'Evolución' },
+  { divider: true, label: 'INTELIGENCIA IA' },
+  { to: '/simulacion',      icon: Bot,              label: 'Simulación IA' },
+  { to: '/recomendaciones', icon: Lightbulb,        label: 'Recomendaciones IA' },
 ]
 
 const NAV_ADMIN_EXTRA = [
-  { divider: true },
-  { to: '/proyectos', icon: '🗂️', label: 'Proyectos' },
+  { divider: true, label: 'ADMINISTRACIÓN' },
+  { to: '/proyectos', icon: FolderOpen, label: 'Proyectos' },
 ]
 
 export default function Sidebar() {
@@ -53,39 +59,55 @@ export default function Sidebar() {
   return (
     <>
       <aside className="sidebar">
+        {/* Brand */}
         <div className="sidebar-brand">
-          <span className="brand-icon">🌍</span>
+          <div className="brand-logo">
+            <Map size={18} strokeWidth={2} />
+          </div>
           <div className="brand-text">
             <h1>Social Rank</h1>
             <p>Bolivia · Gobernación SCZ</p>
           </div>
         </div>
 
+        {/* Nav */}
         <nav className="sidebar-nav">
           {NAV.map((item, i) =>
-            item.divider
-              ? <div key={i} className="nav-divider" />
-              : (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
-                >
-                  <span className="nav-icon">{item.icon}</span>
-                  <span className="nav-label">{item.label}</span>
-                </NavLink>
-              )
+            item.divider ? (
+              <div key={i} className="nav-section-label">
+                {item.label && <span>{item.label}</span>}
+              </div>
+            ) : (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) =>
+                  'nav-link' +
+                  (isActive ? ' active' : '') +
+                  (item.highlight ? ' nav-highlight' : '')
+                }
+              >
+                <span className="nav-icon">
+                  <item.icon size={15} strokeWidth={2} />
+                </span>
+                <span className="nav-label">{item.label}</span>
+                {item.highlight && (
+                  <span className="nav-badge-live">LIVE</span>
+                )}
+              </NavLink>
+            )
           )}
         </nav>
 
-        {/* Indicador de rol + botón toggle */}
+        {/* Role */}
         <div className="sidebar-role">
           {isAdmin ? (
             <div className="role-row">
               <span className="role-dot dot-verde" />
+              <ShieldCheck size={12} style={{ color: 'var(--success)', flexShrink: 0 }} />
               <span className="role-label">Administrador</span>
-              <button className="role-exit-btn" onClick={logoutAdmin} title="Salir de modo admin">
-                ✕ Salir
+              <button className="role-exit-btn" onClick={logoutAdmin} title="Salir">
+                <LogOut size={10} /> Salir
               </button>
             </div>
           ) : (
@@ -97,12 +119,13 @@ export default function Sidebar() {
                 onClick={() => { setShowLogin(true); setError('') }}
                 title="Acceso administrador"
               >
-                🔐 Admin
+                <Lock size={10} /> Admin
               </button>
             </div>
           )}
         </div>
 
+        {/* Project footer */}
         <div className="sidebar-footer">
           <div className="project-label">Proyecto activo</div>
           <div className="project-name">
@@ -114,14 +137,17 @@ export default function Sidebar() {
         </div>
       </aside>
 
-      {/* Modal de login admin */}
+      {/* Modal admin login */}
       {showLogin && (
         <div
           className="modal-overlay open"
           onClick={e => e.target.className.includes('modal-overlay') && setShowLogin(false)}
         >
           <div className="modal" style={{ maxWidth: 360 }}>
-            <h3 style={{ marginBottom: 6 }}>🔐 Acceso Administrador</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+              <Lock size={18} style={{ color: 'var(--gold)' }} />
+              <h3>Acceso Administrador</h3>
+            </div>
             <p style={{ fontSize: 13, color: 'var(--muted)', marginBottom: 18 }}>
               Ingresa la contraseña para acceder a las herramientas de gestión y carga de datos.
             </p>
@@ -137,8 +163,8 @@ export default function Sidebar() {
               />
             </div>
             {error && (
-              <p style={{ fontSize: 12, color: 'var(--accent4)', marginTop: -8, marginBottom: 12 }}>
-                ⚠️ {error}
+              <p style={{ fontSize: 12, color: 'var(--red)', marginTop: -8, marginBottom: 12, display: 'flex', alignItems: 'center', gap: 5 }}>
+                <AlertTriangle size={12} /> {error}
               </p>
             )}
             <div className="modal-footer">
@@ -146,10 +172,10 @@ export default function Sidebar() {
                 className="btn btn-outline"
                 onClick={() => { setShowLogin(false); setPassword(''); setError('') }}
               >
-                Cancelar
+                <X size={13} /> Cancelar
               </button>
               <button className="btn btn-primary" onClick={handleLogin}>
-                Ingresar
+                <ChevronRight size={13} /> Ingresar
               </button>
             </div>
           </div>
