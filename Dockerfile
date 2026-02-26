@@ -1,8 +1,8 @@
 # ── Stage 1: Build frontend ──────────────────────────────────────────────
 FROM node:20-slim AS frontend-builder
 
-# cache-bust: 20260226-v4-gobierno
-ARG CACHEBUST=20260226v4
+# cache-bust: 20260226-v5
+ARG CACHEBUST=20260226v5
 
 WORKDIR /frontend
 COPY frontend/package*.json ./

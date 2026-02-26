@@ -39,8 +39,8 @@ pid = proyecto.id
 
 # ── Narrativas ────────────────────────────────────────────────────────────
 narrativas = [
-    ("El gobierno no controla la crisis del dólar y la economía se derrumba", "dominante",
-     "Ciudadanía urbana, comerciantes y empresarios", date(2026, 1, 8), 9.4),
+    ("La caída en la producción de gas reduce los ingresos del Estado y presiona el presupuesto de inversión pública", "dominante",
+     "Economistas, empresarios y analistas del sector energético", date(2026, 1, 8), 8.9),
     ("La escasez de combustible paraliza Bolivia y el gobierno no tiene solución", "dominante",
      "Transportistas, productores agropecuarios y sector informal", date(2026, 1, 12), 9.2),
     ("El MAS está fracturado y ya no puede gobernar con unidad", "dominante",
@@ -77,11 +77,11 @@ emociones = [
     ("ira", 8.4, "WhatsApp viral",    date(2026, 2, 20), "Cadenas sobre alza de precios de la canasta básica"),
 
     # MIEDO — inestabilidad y crisis
-    ("miedo", 8.1, "Twitter/X",       date(2026, 1, 10), "Temor a una devaluación de la moneda nacional — expertos en medios"),
-    ("miedo", 7.8, "Facebook",         date(2026, 1, 17), "Preocupación generalizada por escasez de dólares para importaciones"),
-    ("miedo", 8.4, "Telegram",         date(2026, 1, 23), "Cadenas sobre posible corralito bancario difundidas masivamente"),
+    ("miedo", 8.1, "Twitter/X",       date(2026, 1, 10), "Preocupación por el impacto del déficit fiscal en los programas sociales del Estado"),
+    ("miedo", 7.8, "Facebook",         date(2026, 1, 17), "Incertidumbre sobre el acceso a crédito externo ante el deterioro de las finanzas públicas"),
+    ("miedo", 8.4, "Telegram",         date(2026, 1, 23), "Cadenas sobre posible recorte de subsidios a combustibles y su impacto en el transporte"),
     ("miedo", 7.5, "WhatsApp viral",   date(2026, 1, 29), "Audios sobre crisis del gas natural y su impacto en exportaciones"),
-    ("miedo", 8.0, "Twitter/X",        date(2026, 2, 5),  "Analistas advierten sobre crisis de reservas internacionales del BCB"),
+    ("miedo", 8.0, "Twitter/X",        date(2026, 2, 5),  "Economistas advierten sobre el impacto del déficit fiscal en la calidad del gasto público"),
     ("miedo", 7.6, "TikTok",           date(2026, 2, 11), "Contenido viral sobre pérdida de empleos en sector informal"),
     ("miedo", 8.2, "Facebook",         date(2026, 2, 17), "Reacción a rebaja en calificación crediticia de Bolivia por Moody's"),
 
@@ -106,7 +106,7 @@ emociones = [
     # DESCONFIANZA — narrativa dominante nacional
     ("desconfianza", 9.0, "Twitter/X", date(2026, 1, 8),  "Escepticismo masivo ante datos oficiales del INE sobre crecimiento"),
     ("desconfianza", 8.7, "Facebook",  date(2026, 1, 15), "Comentarios desconfiados ante actos públicos del Ejecutivo"),
-    ("desconfianza", 9.2, "Telegram",  date(2026, 1, 21), "Análisis ciudadano viral que cuestiona las cifras de reservas del BCB"),
+    ("desconfianza", 9.2, "Telegram",  date(2026, 1, 21), "Análisis ciudadano viral que cuestiona las cifras oficiales de crecimiento económico del INE"),
     ("desconfianza", 8.5, "Twitter/X", date(2026, 1, 26), "Reacción a nota de investigación sobre nepotismo en ministerios"),
     ("desconfianza", 9.1, "Instagram", date(2026, 2, 2),  "Infografías virales sobre inconsistencias entre discurso y presupuesto"),
     ("desconfianza", 8.9, "YouTube",   date(2026, 2, 9),  "Comentarios masivos en videos del presidente evitando preguntas difíciles"),
@@ -126,11 +126,11 @@ for tipo, intens, fuente, fecha, notas in emociones:
 # ── Arquetipos ────────────────────────────────────────────────────────────
 arquetipos = [
     ("El ciudadano urbano en crisis económica",
-     "Hombre o mujer 28-50 años, ciudades capitales. Trabajador formal o informal golpeado por la inflación, escasez de dólares y combustible. Su lealtad política es volátil — la define la situación económica del día a día.",
+     "Hombre o mujer 28-50 años, ciudades capitales. Trabajador formal o informal golpeado por la inflación, el alza del costo de vida y la escasez de combustible. Su lealtad política es volátil — la define la situación económica del día a día.",
      28.0, "frustracion",
      ["Facebook", "WhatsApp", "Twitter/X"],
-     "Estabilidad económica, empleo digno, acceso a dólares, combate a la inflación",
-     "Devaluación, corralito bancario, pérdida de empleo, mayor carestía de vida"),
+     "Estabilidad económica, empleo digno, combate a la inflación, mejora del poder adquisitivo",
+     "Pérdida de empleo, mayor carestía de vida, recorte de subsidios, deterioro de servicios públicos"),
     ("El movimientista decepcionado",
      "Hombre o mujer 35-60 años, base social del MAS. Apoyó la revolución pero siente que la corrupción y las divisiones internas traicionaron los ideales del proceso de cambio. Su voto ya no es seguro.",
      22.0, "desconfianza",
@@ -144,11 +144,11 @@ arquetipos = [
      "Meritocracia, empleo técnico, innovación, transparencia institucional",
      "Migración forzada, nepotismo, falta de oportunidades, hipocresía política"),
     ("El empresario y clase media urbana",
-     "35-60 años, sector privado, comercio y servicios. Afectado por la escasez de dólares, la burocracia y la inseguridad jurídica. Migra hacia la oposición política. Alto poder de incidencia en medios.",
+     "35-60 años, sector privado, comercio y servicios. Afectado por el déficit fiscal, la burocracia y la inseguridad jurídica. Migra hacia la oposición política. Alto poder de incidencia en medios.",
      18.0, "miedo",
      ["Twitter/X", "LinkedIn", "Medios digitales"],
      "Seguridad jurídica, estabilidad monetaria, libre mercado, estado de derecho",
-     "Confiscación de propiedades, inseguridad, tipo de cambio oficial vs paralelo"),
+     "Confiscación de propiedades, inseguridad, deterioro del entorno fiscal y macroeconómico"),
     ("El ciudadano rural e indígena olvidado",
      "Comunidades rurales, pueblos indígenas y áreas periurbanas. Históricamente base del MAS pero siente que las promesas del proceso de cambio no llegaron hasta su comunidad. Voz en radio y boca a boca.",
      12.0, "esperanza",
@@ -164,13 +164,13 @@ for nombre, desc, peso, emocion, canales, valores, miedos in arquetipos:
 # ── Lenguaje (80 términos) ────────────────────────────────────────────────
 lenguaje_data = [
     # CRISIS ECONÓMICA (12)
-    ("el dólar paralelo",       "frase",   178, "economia",    "alto",  "Tipo de cambio no oficial que duplica el oficial — tema diario en redes",          date(2026, 1, 8)),
-    ("no hay dólares",          "frase",   195, "economia",    "alto",  "Escasez de divisas — expresión más repetida en enero-febrero 2026",                 date(2026, 1, 9)),
+    ("el presupuesto en déficit","frase",   165, "economia",    "alto",  "Preocupación ciudadana por el déficit fiscal y su impacto en servicios públicos",  date(2026, 1, 8)),
+    ("la inversión pública baja","frase",   172, "economia",    "alto",  "Percepción del recorte en obras e infraestructura por ajuste del presupuesto nacional", date(2026, 1, 9)),
     ("la inflación nos come",   "frase",   162, "economia",    "alto",  "Percepción del alza de precios en canasta básica como agresión al hogar",           date(2026, 1, 11)),
-    ("reservas en rojo",        "frase",   143, "economia",    "alto",  "Referencia al agotamiento de reservas internacionales del BCB",                     date(2026, 1, 14)),
-    ("el BCB imprime sin control","frase", 128, "economia",    "alto",  "Acusación de emisión monetaria irresponsable como causa de la inflación",           date(2026, 1, 18)),
+    ("el gas se terminó",       "frase",   148, "economia",    "alto",  "Percepción de agotamiento de las reservas de gas natural exportable del país",      date(2026, 1, 14)),
+    ("el déficit fiscal sube",  "frase",   121, "economia",    "alto",  "Alarma ciudadana por el crecimiento del déficit fiscal del gobierno central",        date(2026, 1, 18)),
     ("el gas se acabó",         "frase",   156, "economia",    "alto",  "Crisis de producción de gas natural — caída exportaciones a Argentina y Brasil",    date(2026, 1, 22)),
-    ("el tipo de cambio oficial","frase",  134, "economia",    "alto",  "Referencia al tipo de cambio fijo de 6.96 como distorsión económica",               date(2026, 1, 26)),
+    ("la estabilidad cambiaria", "frase",   94, "economia",    "bajo",  "Reconocimiento ciudadano de la estabilidad del tipo de cambio como logro del BCB", date(2026, 1, 26)),
     ("no alcanza el sueldo",    "frase",   171, "economia",    "alto",  "Expresión de la crisis de poder adquisitivo en trabajadores formales e informales",  date(2026, 2, 1)),
     ("el contrabando gana",     "frase",   112, "economia",    "alto",  "Referencia al mercado negro de combustibles y dólares como consecuencia",           date(2026, 2, 5)),
     ("YPFB en crisis",          "frase",   124, "economia",    "alto",  "Cuestionamiento a la empresa petrolera estatal por la crisis de combustibles",      date(2026, 2, 8)),
@@ -281,8 +281,8 @@ for plat, nombre, tipo, tam, desc, inf in comunidades:
 
 # ── Riesgos ───────────────────────────────────────────────────────────────
 riesgos = [
-    ("Crisis de reservas internacionales — BCB al límite",
-     "Las reservas internacionales del Banco Central caen a niveles históricamente bajos. Riesgo de cesación de pagos y corrida bancaria. Alta circulación en redes de análisis económico y medios internacionales.",
+    ("Caída en exportaciones de gas natural reduce ingresos fiscales del Estado",
+     "La producción de gas natural sigue en declive, reduciendo los ingresos por exportaciones a Argentina y Brasil. El gobierno enfrenta mayor presión para ajustar el presupuesto de inversión pública.",
      "rojo", 5, date(2026, 2, 19)),
     ("Escasez crítica de combustibles paraliza sector productivo",
      "La falta de diesel y gasolina amenaza la cosecha de soya y la cadena de abastecimiento alimentario. El sector transporte anuncia bloqueos indefinidos si no hay respuesta en 72 horas.",
@@ -293,8 +293,8 @@ riesgos = [
     ("Movilización de movimientos sociales contra el gobierno",
      "Organizaciones sindicales y campesinas convocaron a marcha nacional para el 5 de marzo. La fractura dentro del MAS les da legitimidad a ambos bandos. Riesgo de bloqueos prolongados.",
      "amarillo", 4, date(2026, 2, 12)),
-    ("Tipo de cambio paralelo supera el doble del oficial",
-     "El dólar paralelo cotiza a más del doble del tipo de cambio oficial de 6.96 Bs. Riesgo de corrida hacia activos duros y dolarización informal acelerada.",
+    ("Déficit fiscal creciente presiona la inversión social del gobierno",
+     "El déficit del sector público supera el 8% del PIB. El gobierno enfrenta la disyuntiva entre mantener subsidios, aumentar la deuda o reducir la inversión en salud y educación.",
      "amarillo", 4, date(2026, 2, 10)),
     ("Oposición política se articula en coalición para 2027",
      "Líderes de Comunidad Ciudadana, Creemos y nuevos movimientos cívicos iniciaron conversaciones para una candidatura única. Si se consolida, cambia el escenario electoral.",

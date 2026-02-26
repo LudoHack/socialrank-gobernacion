@@ -12,7 +12,6 @@ import './Sidebar.css'
 const NAV_CLIENTE = [
   { to: '/centro',          icon: Zap,             label: 'Centro de Comando',  highlight: true },
   { to: '/dashboard',       icon: LayoutDashboard,  label: 'Dashboard' },
-  { to: '/ivb',             icon: Target,           label: 'Voto Blando (IVB)' },
   { divider: true, label: 'ANÁLISIS' },
   { to: '/narrativas',      icon: BookOpen,         label: 'Narrativas' },
   { to: '/emociones',       icon: Activity,         label: 'Emociones' },
