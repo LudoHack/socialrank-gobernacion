@@ -165,7 +165,7 @@ export default function CentroComando() {
   const { activeProject } = useProject()
   const [data, setData] = useState(null)
   const [ivbData, setIvbData] = useState(null)
-  const [evoData, setEvoData] = useState(null)
+  const [evoData, setEvoData] = useState([])
   const [loading, setLoading] = useState(false)
   const [now, setNow] = useState(new Date())
 
@@ -181,11 +181,13 @@ export default function CentroComando() {
     Promise.all([
       api.get(`/dashboard/${activeProject.id}`),
       api.get(`/ivb/${activeProject.id}`).catch(() => ({ data: null })),
-      api.get(`/evolucion/${activeProject.id}`).catch(() => ({ data: [] })),
+      api.get(`/evolution/${activeProject.id}`).catch(() => ({ data: {} })),
     ]).then(([dash, ivb, evo]) => {
       setData(dash.data)
       setIvbData(ivb.data)
-      setEvoData(evo.data || [])
+      // evolution returns {emociones_por_mes: [...], narrativas_por_mes: [...], riesgos_por_mes: [...]}
+      const emoMes = Array.isArray(evo.data?.emociones_por_mes) ? evo.data.emociones_por_mes : []
+      setEvoData(emoMes)
     }).catch(console.error).finally(() => setLoading(false))
   }, [activeProject])
 
@@ -208,22 +210,28 @@ export default function CentroComando() {
   const { totales, riesgos, emociones_radar, narrativas_por_tipo, arquetipos_top, riesgos_criticos } = data
   const ivbScore = ivbData?.ivb_score ?? 48.5
 
-  // Evolution chart data (last 8 weeks)
-  const evoChartData = evoData.length > 0 ? evoData.slice(-8).map(e => ({
-    semana: `S${e.semana ?? ''}`,
-    ira: e.ira ?? 0,
-    esperanza: e.esperanza ?? 0,
-    desconfianza: e.desconfianza ?? 0,
-  })) : [
-    { semana: 'S1', ira: 7.2, esperanza: 4.1, desconfianza: 6.8 },
-    { semana: 'S2', ira: 7.8, esperanza: 4.5, desconfianza: 7.2 },
-    { semana: 'S3', ira: 8.3, esperanza: 4.2, desconfianza: 7.8 },
-    { semana: 'S4', ira: 8.6, esperanza: 5.1, desconfianza: 8.0 },
-    { semana: 'S5', ira: 8.1, esperanza: 5.8, desconfianza: 7.6 },
-    { semana: 'S6', ira: 8.9, esperanza: 5.3, desconfianza: 8.5 },
-    { semana: 'S7', ira: 9.1, esperanza: 5.6, desconfianza: 8.8 },
-    { semana: 'S8', ira: 8.8, esperanza: 6.1, desconfianza: 9.0 },
-  ]
+  // Evolution chart data — API returns {emociones_por_mes:[{mes, tipo, avg},...]}
+  // We pivot by month: {semana: "2026-01", ira: avg, esperanza: avg, desconfianza: avg}
+  let evoChartData
+  if (evoData.length > 0) {
+    const byMes = {}
+    for (const e of evoData) {
+      if (!byMes[e.mes]) byMes[e.mes] = { semana: e.mes }
+      byMes[e.mes][e.tipo] = e.avg
+    }
+    evoChartData = Object.values(byMes).slice(-8)
+  } else {
+    evoChartData = [
+      { semana: 'Ene S1', ira: 7.2, esperanza: 4.1, desconfianza: 6.8 },
+      { semana: 'Ene S2', ira: 7.8, esperanza: 4.5, desconfianza: 7.2 },
+      { semana: 'Ene S3', ira: 8.3, esperanza: 4.2, desconfianza: 7.8 },
+      { semana: 'Ene S4', ira: 8.6, esperanza: 5.1, desconfianza: 8.0 },
+      { semana: 'Feb S1', ira: 8.1, esperanza: 5.8, desconfianza: 7.6 },
+      { semana: 'Feb S2', ira: 8.9, esperanza: 5.3, desconfianza: 8.5 },
+      { semana: 'Feb S3', ira: 9.1, esperanza: 5.6, desconfianza: 8.8 },
+      { semana: 'Feb S4', ira: 8.8, esperanza: 6.1, desconfianza: 9.0 },
+    ]
+  }
 
   const radarData = emociones_radar.map(e => ({
     tipo: e.tipo,
