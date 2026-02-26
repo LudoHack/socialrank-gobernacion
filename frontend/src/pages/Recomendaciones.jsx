@@ -28,7 +28,7 @@ export default function Recomendaciones() {
       <div className="page-header">
         <div className="page-header-left">
           <h2>💡 Recomendaciones Estratégicas</h2>
-          <p>Claude analiza todos tus datos y genera recomendaciones de comunicación</p>
+          <p>SocialRank IA analiza todos tus datos y genera recomendaciones de comunicación</p>
         </div>
         <button className="btn btn-primary" onClick={generate} disabled={loading}>
           {loading ? <><span className="loader" style={{width:14,height:14}} /> Analizando...</> : '💡 Generar recomendaciones'}
@@ -41,7 +41,7 @@ export default function Recomendaciones() {
             <div style={{fontSize:48,marginBottom:16}}>🤖</div>
             <h3 style={{marginBottom:8}}>Análisis estratégico con IA</h3>
             <p style={{fontSize:13,color:'var(--muted)',maxWidth:480,margin:'0 auto',lineHeight:1.6}}>
-              Claude leerá todos los datos del proyecto — narrativas, emociones, arquetipos, lenguaje y riesgos —
+              SocialRank IA leerá todos los datos del proyecto — narrativas, emociones, arquetipos, lenguaje y riesgos —
               y generará recomendaciones estratégicas sobre <strong>qué decir, qué no decir, en qué canal, con qué tono y cuándo</strong>.
             </p>
             <button className="btn btn-primary" style={{marginTop:20}} onClick={generate}>
@@ -54,7 +54,7 @@ export default function Recomendaciones() {
       {loading && (
         <div className="card" style={{textAlign:'center',padding:40}}>
           <div className="loader" style={{width:32,height:32,margin:'0 auto 16px',borderWidth:3}} />
-          <p style={{color:'var(--muted)'}}>Claude está leyendo tus datos y generando recomendaciones...</p>
+          <p style={{color:'var(--muted)'}}>SocialRank IA está leyendo tus datos y generando recomendaciones...</p>
         </div>
       )}
 

@@ -39,7 +39,7 @@ export default function Simulacion() {
       <div className="page-header">
         <div className="page-header-left">
           <h2>🤖 Simulación de Mensajes</h2>
-          <p>Analiza cómo reaccionarán tus arquetipos ante un mensaje usando IA (Claude)</p>
+          <p>Analiza cómo reaccionarán tus arquetipos ante un mensaje usando SocialRank IA</p>
         </div>
         <button className="btn btn-outline btn-sm" onClick={()=>setShowHistory(!showHistory)}>
           🕐 Historial ({history.length})
@@ -70,7 +70,7 @@ export default function Simulacion() {
           style={{width:'100%',minHeight:100,marginBottom:12}}
         />
         <button className="btn btn-primary" onClick={simulate} disabled={loading}>
-          {loading ? <><span className="loader" style={{width:14,height:14}} /> Analizando con Claude...</> : '🤖 Simular con IA'}
+          {loading ? <><span className="loader" style={{width:14,height:14}} /> Analizando con SocialRank IA...</> : '🤖 Simular con IA'}
         </button>
         {error && <p style={{color:'var(--accent4)',fontSize:13,marginTop:10}}>✗ {error}</p>}
       </div>

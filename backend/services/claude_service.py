@@ -10,26 +10,31 @@ from config import settings
 
 
 def _call_gemini(prompt: str) -> dict:
-    client = genai.Client(api_key=settings.gemini_api_key)
-    resp = client.models.generate_content(
-        model="models/gemini-2.5-flash",
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            temperature=0.4,
-            response_mime_type="application/json",
-        ),
-    )
-    raw = resp.text.strip()
-    # Limpiar posibles bloques de codigo markdown
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-        raw = raw.rsplit("```", 1)[0]
+    if not settings.gemini_api_key:
+        return {"error": "GEMINI_API_KEY no configurada. Configúrala en las variables de entorno del servicio."}
     try:
-        return json.loads(raw)
+        client = genai.Client(api_key=settings.gemini_api_key)
+        resp = client.models.generate_content(
+            model="models/gemini-2.0-flash",
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                temperature=0.4,
+                response_mime_type="application/json",
+            ),
+        )
+        raw = resp.text.strip()
+        # Limpiar posibles bloques de codigo markdown
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+            raw = raw.rsplit("```", 1)[0]
+        try:
+            return json.loads(raw)
+        except Exception as e:
+            return {"error": f"No se pudo parsear la respuesta: {e}", "raw": raw}
     except Exception as e:
-        return {"error": f"No se pudo parsear la respuesta: {e}", "raw": raw}
+        return {"error": f"Error al llamar a la IA: {str(e)}"}
 
 
 def simulate_message(mensaje: str, context: dict) -> dict:

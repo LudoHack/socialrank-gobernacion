@@ -37,18 +37,23 @@ def build_project_context(project_id: int, db: Session) -> dict:
 
 @router.post("/simulate")
 def simulate(req: SimulateRequest, db: Session = Depends(get_db)):
-    context = build_project_context(req.project_id, db)
-    result = simulate_message(req.mensaje, context)
-    # Guardar simulación
-    sim = Simulation(project_id=req.project_id, mensaje_propuesto=req.mensaje, resultado_json=result)
-    db.add(sim); db.commit()
-    return result
+    try:
+        context = build_project_context(req.project_id, db)
+        result = simulate_message(req.mensaje, context)
+        sim = Simulation(project_id=req.project_id, mensaje_propuesto=req.mensaje, resultado_json=result)
+        db.add(sim); db.commit()
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/recommend")
 def recommend(req: RecommendRequest, db: Session = Depends(get_db)):
-    context = build_project_context(req.project_id, db)
-    result = generate_recommendations(context)
-    return result
+    try:
+        context = build_project_context(req.project_id, db)
+        result = generate_recommendations(context)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/simulations/{project_id}")
 def list_simulations(project_id: int, db: Session = Depends(get_db)):
